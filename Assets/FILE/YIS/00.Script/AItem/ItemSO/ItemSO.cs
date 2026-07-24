@@ -19,21 +19,37 @@ public class ItemSO : ScriptableObject
         switch (item)
         {
              case Item.bucket:
-              Debug.Log("양동이");
+                Bucket();
               break;
 
                 case Item.branch:
-                Debug.Log("나뭇가지");
+                Branch();
                 break;
 
                 case Item.food:
-                Debug.Log("음식");
+                Food();
                 break;
              
 
         }
 
 
+    }
+
+    void Bucket()
+    {
+        ItemManager.instance.getBucket = true;
+    }
+
+    void Branch()
+    {
+        ItemManager.instance.getBranch = true;
+    }
+
+
+    void Food()
+    {
+        Debug.Log("회복");
     }
 
 }

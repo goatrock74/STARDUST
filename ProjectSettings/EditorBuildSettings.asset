@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/FILE/PJW/_0.0intro.unity
+    guid: fac59519fe7aa1241980c8a4b6ffad78
+  - enabled: 1
+    path: Assets/FILE/PJW/0.0Main.unity
+    guid: 008cc61ad24c07a48af9d79fa41e9304
+  - enabled: 1
+    path: Assets/FILE/PJW/0.1InGame.unity
+    guid: 72ec1957319097045a07a22bbd378d38
+  - enabled: 1
+    path: Assets/FILE/PJW/0.2Ending.unity
+    guid: 76738da0038cc984692d99d0fef634cf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

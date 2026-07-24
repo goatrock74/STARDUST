@@ -13,6 +13,8 @@ public class Particle_Systeam_Manger : MonoBehaviour
     [SerializeField] private ParticleSystem _ps2;
 
 
+    [Header("Out_Button")]
+    [SerializeField]private ParticleSystem _ps3;
     //===========[Start Button]==============
     public void Particle_Systeam_Start_Button()
     {
@@ -32,6 +34,16 @@ public class Particle_Systeam_Manger : MonoBehaviour
             _ps2.Emit(20);
             _ps2.Stop();
             _ps2.Play();
+        }
+    }
+    //===========[Out Button]==============
+    public void Particle_Systeam_Out_Button()
+    {
+        if (_ps3 != null)
+        {
+            _ps3 .Emit(20);
+            _ps3.Stop();
+            _ps3.Play();
         }
     }
 }

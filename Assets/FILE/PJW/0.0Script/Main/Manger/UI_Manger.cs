@@ -13,6 +13,7 @@ namespace Script
         [Header("RectTransfrom")]
         [SerializeField] private RectTransform _rectTransfrom1;
         [SerializeField] private RectTransform _rectTransfrom2;
+        [SerializeField] private RectTransform _rectTransfrom3;
 
 
         //===========[Fade_In]==============
@@ -63,6 +64,25 @@ namespace Script
             if (_rectTransfrom2 != null)
             {
                 _rectTransfrom2.DOScale(5f, 0.5f);
+            }
+        }
+
+        //===========[Out Button]============
+        public void Big_Scale_Out_Button()
+        {
+            if (_rectTransfrom3 != null)
+            {
+                _rectTransfrom3.DOScale(3f, 0.5f);
+            }
+        }
+
+
+
+        public void Small_Scale_Out_Button()
+        {
+            if (_rectTransfrom3 != null)
+            {
+                _rectTransfrom3.DOScale(2.1f, 0.5f);
             }
         }
     }

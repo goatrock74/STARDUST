@@ -37,7 +37,7 @@ namespace Script
             Show();
         }
 
-        private void Show()
+        public void Show()
         {
             intor = DOTween.Sequence();
             intor.Append(sprite0.DOAnchorPosY((67f), 1f))

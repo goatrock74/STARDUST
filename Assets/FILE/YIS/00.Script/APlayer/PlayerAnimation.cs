@@ -8,6 +8,7 @@ public class PlayerAnimation : MonoBehaviour
 
     Animator _ani;
 
+
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -15,18 +16,28 @@ public class PlayerAnimation : MonoBehaviour
         _ani = GetComponent<Animator>();
     }
 
-    //private void Update()
-    //{
-    //    if (playerMovement == null) return;
+    
 
-    //    if (playerMovement._moveDir.x > 0)
-    //    {
-    //        _sr.flipX = true;
-    //    }
-    //    else 
-    //    {
-    //        _sr.flipX = false; 
-    //    }
+    private void Update()
+    {
+        if (playerMovement == null) return;
 
-    //}
+        _ani.SetFloat("Speed", playerMovement._moveDir.magnitude);
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (playerMovement == null) return;
+
+        if (playerMovement._moveDir.x * -transform.rotation.z < 0)
+        {
+            _sr.flipX = true;
+        }
+        else if (playerMovement._moveDir.x * -transform.rotation.z > 0)
+        {
+            _sr.flipX = false;
+        }
+    }
+
 }

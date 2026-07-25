@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class GravityedThing : MonoBehaviour
 {
@@ -7,10 +8,19 @@ public class GravityedThing : MonoBehaviour
     [SerializeField] private bool rotateToCenter;
     [SerializeField] PlenetGravity plenetGravity;
     [SerializeField] public float gravityPower = 100f;
+    private Vector3 _birthPoint;
 
+    WaitForSeconds wait = new WaitForSeconds(0.03f);
     Transform m_transform;
     Collider2D _cc;
     Rigidbody2D _rb;
+
+    float timer = 1f;
+
+    private void Awake()
+    {
+        _birthPoint = transform.position;
+    }
 
     private void Start()
     {
@@ -21,9 +31,10 @@ public class GravityedThing : MonoBehaviour
 
     private void Update()
     {
-        if(plenetGravity != null)
+        if (plenetGravity != null)
         {
-            if(!plenetGravity.AttractedObject.Contains(_cc))
+            timer = 1f;
+            if (!plenetGravity.AttractedObject.Contains(_cc))
             {
                 plenetGravity = null;
                 return;
@@ -33,7 +44,12 @@ public class GravityedThing : MonoBehaviour
         }
         else
         {
-            _rb.gravityScale = 1f;
+            timer -= Time.deltaTime;
+            if(timer <= 0)
+            {
+                timer = 1f; 
+                transform.position = _birthPoint;
+            }
         }
     }
 
@@ -54,4 +70,6 @@ public class GravityedThing : MonoBehaviour
             m_transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
         }
     }
+
+   
 }

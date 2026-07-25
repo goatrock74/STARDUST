@@ -18,6 +18,8 @@ public class PlayerItemGet : MonoBehaviour
             if(collider.TryGetComponent<IItem>(out IItem item))
             {
                 item.GetItem();
+                Destroy(collider);
+                collider.transform.parent.gameObject.SetActive(false);
             }
         }
     }

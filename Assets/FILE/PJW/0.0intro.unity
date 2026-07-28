@@ -770,8 +770,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Sand\uC704\uCE58"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4202bfb421891ae44acee132f5a06084, type: 2}
-  m_sharedMaterial: {fileID: 5139910345900746469, guid: 4202bfb421891ae44acee132f5a06084, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3acfcb851cbd5b444b4a8169d5f2d0b9, type: 2}
+  m_sharedMaterial: {fileID: -5288442374932775551, guid: 3acfcb851cbd5b444b4a8169d5f2d0b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -2,7 +2,7 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Script
+namespace Main
 {
     public class UI_Manger : MonoBehaviour
     {

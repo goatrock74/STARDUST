@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/FILE/PJW/0.1Main.unity
     guid: 008cc61ad24c07a48af9d79fa41e9304
   - enabled: 1
-    path: Assets/FILE/PJW/WSH.unity
-    guid: b47e3740328f8cd4a9624052151bd781
-  - enabled: 0
-    path: Assets/FILE/WSH/WSH.unity
-    guid: 7b7fe73547cbafa4995c5c5a5049328a
+    path: Assets/FILE/PJW/0.2Question.unity
+    guid: 53a217990197acb428465a53fe57c285
+  - enabled: 1
+    path: Assets/FILE/PJW/0.3InGame.unity
+    guid: 72ec1957319097045a07a22bbd378d38
+  - enabled: 1
+    path: Assets/FILE/PJW/0.4Ending.unity
+    guid: 76738da0038cc984692d99d0fef634cf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

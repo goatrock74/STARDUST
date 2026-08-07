@@ -1,0 +1,56 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Windows;
+
+
+namespace InGame
+{
+    public class Player_Movement : MonoBehaviour
+    {
+        [Header("Speed")]
+        [Min(1f)]
+        [SerializeField] private float speed;
+
+
+        [Header("Planet_Gravity")]
+        [SerializeField] private Planet_Gravity pg_cs;
+
+
+        private Vector2 input;
+        private Rigidbody2D rigid;
+
+        private void Awake()
+        {
+            rigid = GetComponent<Rigidbody2D>();
+        }
+
+        private void FixedUpdate()
+        {
+            Vector2 playerDir = new Vector2(Mathf.Abs(pg_cs.GravityDir.x), Mathf.Abs(pg_cs.GravityDir.y));
+            Vector2 moveDir = Vector2.zero;
+
+            if (playerDir.x > playerDir.y)
+            {
+                // 플레이어가 좌/우 측면에 있을 때 -> 상/하(y) 입력 사용
+                moveDir = new Vector2(0, input.y);
+            }
+            else
+            {
+                // 플레이어가 상/하 측면에 있을 때 -> 좌/우(x) 입력 사용
+                moveDir = new Vector2(input.x, 0);
+            }
+
+            // 2. 방향 정규화 (입력이 작을 때 급격히 커지는 문제 방지)
+            Vector2 targetDirection = moveDir.magnitude > 0.01f ? moveDir.normalized : Vector2.zero;
+
+            // 3. 목표 속도 계산 및 부드러운 이동 (입력이 없을 땐 Lerp를 통해 0으로 감속)
+            Vector2 targetVelocity = targetDirection * speed;
+            rigid.linearVelocity = Vector2.Lerp(rigid.linearVelocity, targetVelocity, 15f * Time.fixedDeltaTime);
+        }
+
+        private void OnMove(InputValue value)
+        {
+            input = value.Get<Vector2>();
+        }
+    }
+}

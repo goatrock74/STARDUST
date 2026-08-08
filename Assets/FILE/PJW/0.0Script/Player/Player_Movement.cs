@@ -16,7 +16,13 @@ namespace InGame
         [SerializeField] private Planet_Gravity pg_cs;
 
 
-        private Vector2 input;
+        [Header("Player_Visual")]
+        [SerializeField] private Player_Visual pv_cs;
+
+
+        private Vector2 Input;
+        private Vector2 playerDir;
+        private Vector2 moveDir;
         private Rigidbody2D rigid;
 
         private void Awake()
@@ -26,18 +32,20 @@ namespace InGame
 
         private void FixedUpdate()
         {
-            Vector2 playerDir = new Vector2(Mathf.Abs(pg_cs.GravityDir.x), Mathf.Abs(pg_cs.GravityDir.y));
-            Vector2 moveDir = Vector2.zero;
+            playerDir = pg_cs.GravityDir;
 
-            if (playerDir.x > playerDir.y)
+            Vector2 playerDir_abs = new Vector2(Mathf.Abs(pg_cs.GravityDir.x), Mathf.Abs(pg_cs.GravityDir.y));
+            moveDir = Vector2.zero;
+
+            if (playerDir_abs.x > playerDir_abs.y)
             {
                 // 플레이어가 좌/우 측면에 있을 때 -> 상/하(y) 입력 사용
-                moveDir = new Vector2(0, input.y);
+                moveDir = new Vector2(0, Input.y);
             }
             else
             {
                 // 플레이어가 상/하 측면에 있을 때 -> 좌/우(x) 입력 사용
-                moveDir = new Vector2(input.x, 0);
+                moveDir = new Vector2(Input.x, 0);
             }
 
             // 2. 방향 정규화 (입력이 작을 때 급격히 커지는 문제 방지)
@@ -50,7 +58,12 @@ namespace InGame
 
         private void OnMove(InputValue value)
         {
-            input = value.Get<Vector2>();
+            Input = value.Get<Vector2>();
+        }
+
+        private void LateUpdate()
+        {
+            pv_cs.Visual(playerDir,moveDir);
         }
     }
 }

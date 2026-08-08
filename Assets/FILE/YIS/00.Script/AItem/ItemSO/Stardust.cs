@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum Item
+public enum Stardust
 {
     bucket,
     branch,
@@ -13,20 +13,20 @@ public enum Item
 public class ItemSO : ScriptableObject
 {
     public Sprite ItemAsset;
-    [SerializeField] private Item item;
+    [SerializeField] private Stardust item;
     public void UseItme()
     {
         switch (item)
         {
-             case Item.bucket:
+             case Stardust.bucket:
                 Bucket();
               break;
 
-                case Item.branch:
+                case Stardust.branch:
                 Branch();
                 break;
 
-                case Item.food:
+                case Stardust.food:
                 Food();
                 break;
              

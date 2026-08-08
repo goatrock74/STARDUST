@@ -35,13 +35,30 @@ namespace InGame
             Debug.DrawRay(transform.position, GravityDir.normalized * 3f, Color.red);
         }
 
+
+
         private void Update()
         {
-            lookDirection = planet.transform.position - transform.position;
-            float rawAngle = Mathf.Atan2(lookDirection.y, lookDirection.x)*Mathf.Rad2Deg;
+            Vector2 playerDir = planet.transform.position - transform.position;
+            Vector2 dir_abs = new Vector2(Mathf.Abs(playerDir.x), Mathf.Abs(playerDir.y));
 
-            lookAngle = (Mathf.Round(rawAngle/90)+1)*90;
-            transform.rotation = Quaternion.Euler(0f, 0f, lookAngle);
+            // x와 y의 값 차이가 이 값보다 작으면 꼭짓점 부근으로 판단하고 방향 전환을 유예합니다.
+            float threshold = 0.2f; // 게임 스케일에 따라 0.1 ~ 0.5 사이로 조절해보세요.
+
+            // 두 값의 차이가 데드존보다 클 때만 각도를 재계산합니다.
+            if (Mathf.Abs(dir_abs.x - dir_abs.y) > threshold)
+            {
+                int angle;
+                if (dir_abs.x > dir_abs.y)
+                {
+                    angle = (playerDir.x < 0 ? -90 : 90);
+                }
+                else
+                {
+                    angle = (playerDir.y < 0 ? 0 : -180);
+                }
+                transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            }
         }
 
         private void OnDrawGizmos()

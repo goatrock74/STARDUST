@@ -26,18 +26,5 @@ public class PlayerAnimation : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        if (playerMovement == null) return;
-
-        if (playerMovement._moveDir.x * -transform.rotation.z < 0)
-        {
-            _sr.flipX = true;
-        }
-        else if (playerMovement._moveDir.x * -transform.rotation.z > 0)
-        {
-            _sr.flipX = false;
-        }
-    }
 
 }

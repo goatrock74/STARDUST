@@ -4,16 +4,15 @@ using System.Collections;
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] GravityedThing Gravityed;
     [SerializeField] private float jumpPower;
     [SerializeField] private Vector2 size;
     [SerializeField] LayerMask whatIsGround;
-    WaitForSeconds wait = new WaitForSeconds(0.2f);
 
+    Rigidbody2D _rb;
 
     private void Awake()
     {
-        Gravityed = GetComponentInParent<GravityedThing>();
+        _rb = GetComponentInParent<Rigidbody2D>();
     }
 
     private void Update()
@@ -25,25 +24,13 @@ public class PlayerJump : MonoBehaviour
 
         if (jum != null && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Gravityed.gravityPower *= -1;
-            StartCoroutine(JumpOver());
+            _rb.AddForceY(jumpPower, ForceMode2D.Impulse);
         }
     }
-
-    
-    
-
-
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(transform.position, size);
-    }
-
-    IEnumerator JumpOver()
-    {
-        yield return wait;
-        Gravityed.gravityPower *= -1;
     }
 }

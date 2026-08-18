@@ -16,7 +16,7 @@ public class PlayerAnimation : MonoBehaviour
         _ani = GetComponent<Animator>();
     }
 
-    
+
 
     private void Update()
     {
@@ -24,6 +24,14 @@ public class PlayerAnimation : MonoBehaviour
 
         _ani.SetFloat("Speed", playerMovement._moveDir.magnitude);
 
+        if(playerMovement._moveDir.x < 0)
+        {
+            _sr.flipX = true;
+        }
+        else if(playerMovement._moveDir.x > 0)
+        {
+            _sr.flipX = false;
+        }
     }
 
 
